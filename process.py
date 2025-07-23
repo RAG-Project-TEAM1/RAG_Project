@@ -4,7 +4,6 @@ import json
 from pathlib import Path
 import re
 import fitz  # PyMuPDF
-import olefile
 from datetime import datetime
 import subprocess
 import sys
@@ -27,9 +26,16 @@ class ImprovedDocumentConverter:
         
         # 기본 정리
         text = text.strip()
+
+        # 특정 이상 문자 ȃ, ⴇ, ࢀ 제거
+        for ch in ['ȃ', 'ⴇ', 'ࢀ']:
+            text = text.replace(ch, '')
         
         # 불필요한 공백 제거
         text = re.sub(r'\s+', ' ', text)
+
+        # 한자 제거
+        text = re.sub(r'[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF\u20000-\u2FA1F]', '', text)
         
         # 특수 문자 정리 (한글, 영문, 숫자, 기본 문장부호만 유지)
         text = re.sub(r'[^\w\s가-힣.,!?;;:()\[\]{}"\'-]', '', text)
