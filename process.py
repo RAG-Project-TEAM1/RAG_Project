@@ -8,6 +8,7 @@ import olefile
 from datetime import datetime
 import subprocess
 import sys
+from langchain_teddynote.document_loaders import HWPLoader
 
 class ImprovedDocumentConverter:
     def __init__(self, input_dir, output_dir, logs_dir):
@@ -54,75 +55,20 @@ class ImprovedDocumentConverter:
             print(f"PDF 추출 오류 ({pdf_path}): {e}")
             return ""
     
+
     def extract_hwp_text_improved(self, hwp_path):
-        """HWP에서 텍스트 추출 (개선된 방법)"""
+        """HWPLoader를 사용한 안정적인 HWP 텍스트 추출"""
         try:
-            if not olefile.isOleFile(hwp_path):
+            docs = HWPLoader(hwp_path).load()
+            if docs:
+                return docs[0].page_content.strip()
+            else:
                 return ""
-            
-            ole = olefile.OleFileIO(hwp_path)
-            text = ""
-            
-            # 모든 스트림 확인
-            all_streams = ole.listdir()
-            print(f"  HWP 스트림 목록: {[stream[0] for stream in all_streams]}")
-            
-            # 여러 스트림에서 텍스트 추출 시도
-            streams_to_try = [
-                'PrvText',      # 미리보기 텍스트
-                'Contents',     # 내용
-                'BodyText',     # 본문 텍스트
-                'Section0',     # 섹션 0
-                'Section1',     # 섹션 1
-                'DocInfo',      # 문서 정보
-                'HwpSummaryInformation',  # 요약 정보
-                'FileHeader',   # 파일 헤더
-                'DocOptions',   # 문서 옵션
-            ]
-            
-            for stream_name in streams_to_try:
-                if ole.exists(stream_name):
-                    try:
-                        stream_content = ole.openstream(stream_name).read()
-                        print(f"  스트림 {stream_name} 크기: {len(stream_content)} bytes")
-                        
-                        # 여러 인코딩 시도
-                        for encoding in ['utf-8', 'cp949', 'euc-kr', 'utf-16', 'latin1', 'ascii']:
-                            try:
-                                decoded_text = stream_content.decode(encoding, errors='ignore')
-                                if len(decoded_text.strip()) > len(text):
-                                    text = decoded_text
-                                    print(f"  인코딩 {encoding}로 {len(decoded_text)}자 추출")
-                            except:
-                                continue
-                    except Exception as e:
-                        print(f"  스트림 {stream_name} 처리 오류: {e}")
-                        continue
-            
-            # 모든 스트림에서 텍스트 찾기 시도
-            if len(text.strip()) < 500:
-                for stream_path in all_streams:
-                    stream_name = stream_path[0]
-                    if stream_name not in streams_to_try:
-                        try:
-                            stream_content = ole.openstream(stream_name).read()
-                            for encoding in ['utf-8', 'cp949', 'euc-kr']:
-                                try:
-                                    decoded_text = stream_content.decode(encoding, errors='ignore')
-                                    if len(decoded_text.strip()) > len(text) and len(decoded_text.strip()) > 100:
-                                        text = decoded_text
-                                        print(f"  추가 스트림 {stream_name}에서 {len(decoded_text)}자 추출")
-                                except:
-                                    continue
-                        except:
-                            continue
-            
-            ole.close()
-            return text.strip()
-            
         except Exception as e:
-            print(f"HWP 추출 오류 ({hwp_path}): {e}")
+            print(f"HWPLoader 변환 실패 ({hwp_path}): {e}")
             return ""
+
+
     
     def find_document_files(self):
         """PDF와 HWP 파일 찾기"""
@@ -202,7 +148,7 @@ class ImprovedDocumentConverter:
             'failure_files': self.failure_log
         }
         
-        with open(self.logs_dir / 'improved_conversion_results.json', 'w', encoding='utf-8') as f:
+        with open(self.logs_dir / 'improved_conversion_results.json', 'w', encoding='cp949') as f:
             json.dump(results, f, ensure_ascii=False, indent=2)
         
         print(f"✅ 결과 저장 완료: {self.logs_dir}")
@@ -234,9 +180,9 @@ class ImprovedDocumentConverter:
 
 if __name__ == "__main__":
     # 경로 설정
-    input_path = "data/raw/base_data/extracted_files-20250722T073504Z-1-001/files"
-    output_path = "data/processed/improved_processed_data"
-    logs_path = "data/logs/improved_conversion_logs"
+    input_path = "/home/shared_rag"
+    output_path = "/home/result_rag"
+    logs_path = "/home/log_rag"
     
     # 디렉토리 생성
     os.makedirs(output_path, exist_ok=True)
