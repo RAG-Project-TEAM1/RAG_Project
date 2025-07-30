@@ -1,0 +1,3 @@
+from .fitz_parser import parse_with_fitz
+from .plumber_parser import parse_with_pdfplumber
+from .unstructured_parser import parse_with_unstructured
