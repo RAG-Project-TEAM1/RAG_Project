@@ -1,8 +1,30 @@
-# Environment variables
-.env
 
 # Logs
 *.log
 
 # Python
 *.ipynb
+__pycache__/
+*.pyc
+*.pyo
+
+# 환경/비밀키
+.env
+*.env
+openai_api_key.txt
+
+# 대용량 벡터/인덱스
+*.index
+vector.index
+vector_metadata.json
+output_jsonl_chunks/
+data/*.hwp
+data/*.pdf
+data/*.md
+data/*.jsonl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
