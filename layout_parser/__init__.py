@@ -1,0 +1,1 @@
+from .pdf_to_markdown_mineru import process_pdfs_with_mineru
