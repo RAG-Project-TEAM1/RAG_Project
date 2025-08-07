@@ -8,3 +8,4 @@ def generate_answer(query, context, model="gpt-4o"):
         temperature=0.2
     )
     return resp.choices[0].message.content.strip()
+    
