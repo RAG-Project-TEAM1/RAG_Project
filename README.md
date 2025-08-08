@@ -27,12 +27,12 @@
 ---
 ## 🛠️ 기술 스택
 
-
-
-
-
-
-
+	•	Python 3.10+
+	•	FAISS: 벡터 검색 인덱스
+	•	OpenAI GPT API: LLM 응답 생성
+	•	PyMuPDF, PDFPlumber, Unstructured: PDF 파싱
+	•	MinerU: PDF → Markdown 변환
+	•	Pandas, NumPy: 데이터 처리
 
 ## 📂 리포지토리 구조
 
@@ -103,8 +103,12 @@ pip install -r requirements.txt
 ```
 
 ### 4. 환경 변수 설정
+
+이 프로젝트는 실행 전에 **`.env` 파일**에 필수 환경 변수를 정의해야 합니다.  
+아래와 같이 프로젝트 루트에 `.env` 파일을 생성하세요.
+
 ```
-OPENAI_API_KEY=sk-xxxx
+touch .env
 ```
 ## 🚀 실행 방법
 
