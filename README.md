@@ -1,5 +1,12 @@
 # 📄 RAG_Project
 
+## ✏️ 협업일지 링크
+박지수 - https://www.notion.so/23803752e5f9802fa345e748a399a184
+박창훈 - https://www.notion.so/Daily-PCH-238ac8e1b95280adaa6fc701ef407b7e
+이우진 - https://www.notion.so/2-238816c91f3a80c880ffc05feccf53e8
+정민영 - https://www.notion.so/Daily-2382d05d9c468081a528f698cf580863
+주대성 - https://www.notion.so/23832d889f8880ba8a1ac7835ce76f4d
+
 ## 📌 프로젝트 개요
 **배경**  
 매일 수백 건의 기업 및 정부 제안요청서(RFP)가 게시되지만, 각 요청서는 수십 페이지에 달하여 전부 검토하는 것이 어렵습니다.  
