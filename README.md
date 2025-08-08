@@ -166,3 +166,43 @@ python pdf_to_md_pipeline.py -i ./pdfs -o ./data --vram-size 16
 ├── file1.md                            # 폴더 밖의 원본/추가 마크다운 파일
 ├── file2.md                            # 폴더 밖의 원본/추가 마크다운 파일    
 ```   
+##📦 환경 변수 (.env)
+```.env``` 파일에는 다음과 같은 환경 변수를 포함해야 합니다
+```
+# OpenAI API 키
+OPENAI_API_KEY=your-openai-api-key
+
+# 선택적으로 사용할 수 있는 모델 이름 (gpt-4 or gpt-3.5-turbo)
+LLM_MODEL=gpt-4
+
+# 벡터 DB 저장 경로
+VECTOR_DB_PATH=./vector_store/faiss_index
+
+# 데이터 경로 설정
+DATA_DIR=./data
+
+# 기타 환경 설정
+LOG_LEVEL=INFO
+```
+##📈 예시 워크플로우
+```
+A[PDF 문서 업로드] --> B[PDF → Markdown 변환]
+B --> C[Markdown 청킹 및 전처리]
+C --> D[임베딩 및 벡터 저장]
+D --> E[유사도 검색 + LLM 응답 생성]
+E --> F[최종 응답 사용자에게 반환]
+```
+
+## 🧩 주요 기능 요약
+| 기능 영역         | 설명 |
+|------------------|------|
+|    PDF 파싱       | 다양한 PDF 파서(Fitz, PDFPlumber, Unstructured 등)를 활용한 문서 레이아웃 분석 |
+|    Markdown 변환  | MinerU 기반의 레이아웃 정제 및 Markdown 후처리 수행 |
+|    청킹 및 전처리  | 헤더 기반 청킹, Null 블록 제거 등 Markdown 정제 및 구조화 |
+|    벡터 인덱싱     | FAISS를 사용한 임베딩 기반 유사도 검색 수행 |
+|    LLM 응답 생성   | 사용자 쿼리에 기반한 프롬프트 구성 및 OpenAI API 응답 생성 |
+|    요약 및 강화    | 중요도 기반 필터링 및 요약 등 응답 품질 향상을 위한 후처리 기능 포함 |
+
+## 📄 라이선스
+
+본 프로젝트는 MIT 라이선스 하에 제공됩니다.
