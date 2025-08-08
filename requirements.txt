@@ -1,0 +1,10 @@
+openai>=1.13.3
+faiss-cpu>=1.7.4
+pandas>=2.0.0
+numpy>=1.24.0
+tqdm
+python-dotenv
+rapidfuzz
+transformers>=4.38.0
+Pillow
+sentence-transformers
