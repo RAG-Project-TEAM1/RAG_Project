@@ -2,9 +2,13 @@
 
 ## ✏️ 협업일지 링크
 박지수 - https://www.notion.so/23803752e5f9802fa345e748a399a184
+
 박창훈 - https://www.notion.so/Daily-PCH-238ac8e1b95280adaa6fc701ef407b7e
+
 이우진 - https://www.notion.so/2-238816c91f3a80c880ffc05feccf53e8
+
 정민영 - https://www.notion.so/Daily-2382d05d9c468081a528f698cf580863
+
 주대성 - https://www.notion.so/23832d889f8880ba8a1ac7835ce76f4d
 
 ## 📌 프로젝트 개요
