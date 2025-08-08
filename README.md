@@ -140,10 +140,13 @@ pip install uv
 uv pip install -U "mineru[core]"
 ```
 ### 사용방법
+
+```
 python pdf_to_md_pipeline.py -i ./pdfs -o ./data --vram-size 16
 -i : PDF 파일들이 있는 디렉토리
 -o : 출력 디렉토리
 --vram-size : MinerU 가상 RAM 크기 (기본값: 16GB)
+```
 
 ### 최종 출력
 ```
@@ -166,7 +169,7 @@ python pdf_to_md_pipeline.py -i ./pdfs -o ./data --vram-size 16
 ├── file1.md                            # 폴더 밖의 원본/추가 마크다운 파일
 ├── file2.md                            # 폴더 밖의 원본/추가 마크다운 파일    
 ```   
-##📦 환경 변수 (.env)
+## 📦 환경 변수 (.env)
 ```.env``` 파일에는 다음과 같은 환경 변수를 포함해야 합니다
 ```
 # OpenAI API 키
@@ -184,7 +187,7 @@ DATA_DIR=./data
 # 기타 환경 설정
 LOG_LEVEL=INFO
 ```
-##📈 예시 워크플로우
+## 📈 예시 워크플로우
 ```
 A[PDF 문서 업로드] --> B[PDF → Markdown 변환]
 B --> C[Markdown 청킹 및 전처리]
@@ -205,4 +208,5 @@ E --> F[최종 응답 사용자에게 반환]
 
 ## 📄 라이선스
 
-본 프로젝트는 MIT 라이선스 하에 제공됩니다.
+본 프로젝트는 코드잇 하에 제공됩니다.
+https://www.codeit.kr/
