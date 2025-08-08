@@ -1,5 +1,8 @@
 # 📄 RAG_Project
 
+## 📃보고서 PDF 파일
+https://drive.google.com/file/d/1N4MwpW_2BsCFiBZBrCDfmwM3lv83P9kx/view?usp=sharing
+
 ## ✏️ 협업일지 링크
 박지수 - https://www.notion.so/23803752e5f9802fa345e748a399a184
 
